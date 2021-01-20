@@ -17,23 +17,28 @@ public class GunContoller : MonoBehaviour
     public event TryReload ReloadBullets;
 
     private AudioSource shootSound;
+    private ShipController ship;
 
     private void Awake()
     {
+        ship = GetComponent<ShipController>();
         shootSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (ship.lifes != 0)
         {
-            LaunchBullet();
-        }
+            if (Input.GetMouseButtonDown(1))
+            {
+                LaunchBullet();
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Reload();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Reload();
+            }
         }
     }
 
